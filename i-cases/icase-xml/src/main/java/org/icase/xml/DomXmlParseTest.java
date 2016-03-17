@@ -21,7 +21,8 @@ import org.xml.sax.SAXParseException;
 /**
  * 参考文件:
  * http://www.blogjava.net/DLevin/archive/2012/11/18/391545.html
- * 
+ * http://acooly.iteye.com/blog/1706943
+ * http://www.ibm.com/developerworks/cn/xml/x-jaxpval.html#code4
  * @author sunkk
  *
  */
