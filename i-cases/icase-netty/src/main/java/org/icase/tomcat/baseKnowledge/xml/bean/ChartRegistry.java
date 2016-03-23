@@ -28,9 +28,9 @@ public class ChartRegistry {
 		digester.push(this);
 		digester.setValidating(false);
 		
-		digester.addObjectCreate("charts/chart",ChartConfig.class);
+		digester.addObjectCreate("charts/chart","org.icase.tomcat.baseKnowledge.xml.bean.ChartConfig","classname");
 		digester.addSetProperties("charts/chart");
-		
+		digester.addSetNext("charts/chart","register");
 		digester.addBeanPropertySetter("charts/chart/legendVisible");
 		digester.addBeanPropertySetter("charts/chart/toolTipsVisible");
 		digester.addBeanPropertySetter("charts/chart/title");
@@ -41,7 +41,6 @@ public class ChartRegistry {
 		digester.addBeanPropertySetter("charts/chart/height");
 		digester.addBeanPropertySetter("charts/chart/hql");
 		digester.addBeanPropertySetter("charts/chart/description");
-		digester.addSetNext("charts/chart","register");
 		digester.parse(is);
 		System.out.println(registry);
 	}

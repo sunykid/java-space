@@ -1,1 +1,6 @@
-/target/
+﻿#.开头文件
+.*
+!.gitignore
+#2进制文件
+/bin
+/target
