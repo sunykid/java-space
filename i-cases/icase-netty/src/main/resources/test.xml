@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<charts>
+    <chart id="BarChart1" >
+        <title>统计图一</title>
+        <legendVisible>false</legendVisible>
+        <toolTipsVisible>true</toolTipsVisible>
+        <type>Bar</type>
+        <labelx>时间</labelx>
+        <labely>数据</labely>
+        <width>500</width>
+        <height>360</height>
+        <hql>select count(c),c.department.name from edu.pku.pub.aims.model.business.Client c group by c.department</hql>
+        <description></description>
+    </chart>
+</charts>

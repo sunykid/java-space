@@ -11,6 +11,6 @@ public class AssertTest {
 		
 		Asserter.assertEqual(1, 1);
 //		Asserter.assertEqual(1, 2);
-		Assert.assertEquals("不相等", 12.0, 11, 0.5);
+		Assert.assertEquals("不相等", 12.0, 12, 0.5);
 	}
 }
