@@ -1,4 +1,4 @@
-package org.icase.distributed;
+package org.icase.distributed.tcp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
