@@ -41,6 +41,7 @@ public class ChartRegistry {
 		digester.addBeanPropertySetter("charts/chart/height");
 		digester.addBeanPropertySetter("charts/chart/hql");
 		digester.addBeanPropertySetter("charts/chart/description");
+		
 		digester.parse(is);
 		System.out.println(registry);
 	}

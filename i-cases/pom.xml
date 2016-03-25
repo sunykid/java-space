@@ -26,6 +26,7 @@
 		<module>icase-rpc</module>
 		<module>icase-corejava</module>
     <module>icase-netty</module>
+    <module>icase-distributed</module>
   </modules>
 	<build>
 		<pluginManagement>
