@@ -27,6 +27,7 @@
 		<module>icase-corejava</module>
     <module>icase-netty</module>
     <module>icase-distributed</module>
+    <module>icase-junit</module>
   </modules>
 	<build>
 		<pluginManagement>
