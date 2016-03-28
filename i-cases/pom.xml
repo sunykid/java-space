@@ -28,6 +28,7 @@
     <module>icase-netty</module>
     <module>icase-distributed</module>
     <module>icase-junit</module>
+    <module>icase-hibernate</module>
   </modules>
 	<build>
 		<pluginManagement>
