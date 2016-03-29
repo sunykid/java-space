@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- 继承的三种方式 -->
+<!-- 1.single table per class -->
+<!-- 	父类和子类都映射到同一张表。使用一个额外的标识列来标识当前记录行是父类或子类的实例，那些父类中没有的字段置空-->
+<!-- Joined subclass：这个策略中为每个类使用单独的表，不过子类对应的表中只存储那些父类中没有的字段的值。如果要获取某个子类实例的所有值，就必须要执行两个个表的连接操作。 -->
+<!-- Table per class: 这个策略也是为每个类使用单独的表，不过这里的子类对应的表中存储的值包含了其父类的所有字段。这样的话，子类的表中的记录包含了其所有的值，获取这些值的时候不再需要连接操作。 -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.icase.hibernate.bean">
+
+	<class name="Project" table="T_PROJECT">
+		<id name="id" column="id">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="title" column="TITLE"></property>
+		<set name="geeks" table="T_GEEKS_PROJECTS">
+			<key column="ID_PROJECT"></key>
+			<many-to-many column="ID_GEEK" class="Geek"></many-to-many>
+		</set>
+	</class>
+
+	<class name="Phone" table="T_PHONE">
+		<id name="id" column="id">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="number" column="NUMBER"></property>		
+		<many-to-one name="person" column="ID_PERSON" unique="false" cascade="all"></many-to-one>
+	</class>
+	<class name="IdCard" table="T_ID_CARD">
+		<id name="id" column="id">
+			<generator class="uuid"></generator>
+		</id>
+	</class>
+	<class name="Person" table="t1">
+		<id name="id" column="id">
+		<!-- 	<generator class="native"></generator> -->	
+				<generator class="uuid"></generator>
+		</id>
+<!-- 使用该种方式 生成一个单表 PERSON_TYPE字段用于区分当前记录的类型（Person or Geek）-->
+<!-- 当存储类型为父类型（Person）时，所属子类型（Geek）的FAV_PRO_LANG字段将默认为NULL -->
+<!-- <discriminator column="PERSON_TYPE" type="string"  />
+		<property name="name" column="name"></property>
+		<subclass name="Geek" extends="Person">
+			<property name="favouriteProgrammingLanguate" column="FAV_PRO_LANG"></property>
+		</subclass> -->
+<!-- 该种方式生成多表，父类型的表结构不发生变化 ，生成新的子表并添加主外键关系，子表 T_Geek 包含相应字段-->		
+<!-- 		<property name="name" column="name"></property>
+		<joined-subclass name="Geek" table ="T_Geek">
+			<key column="ID_PERSON" ></key>
+			<property name="favouriteProgrammingLanguate" column="FAV_PRO_LANG"></property>
+		</joined-subclass> -->
+		
+ 		<property name="name" column="name"></property>
+		<many-to-one name="idCard" column="ID_ID_CARD" unique="true" ><!-- cascade="all|save-update,refresh" --></many-to-one>
+		<union-subclass name="Geek" table="U_GEEK">
+			<property name="favouriteProgrammingLanguate" column="FAV_PRO_LANG"></property>
+			<set name="projects" inverse="true" table="T_GEEKS_PROJECTS"> <!-- inverse=true 维护关联关系的权限归属方 -->
+				<key column="ID_GEEK"></key>
+				<many-to-many column="ID_PROJECT" class="Project"></many-to-many>
+			</set>
+		</union-subclass>	
+	</class>
+</hibernate-mapping>
